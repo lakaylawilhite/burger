@@ -1,27 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<!-- Font Awesome CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-	<!-- Custom CSS -->
-	<link rel="stylesheet" href="/assets/css/burger_style.css" type="text/css" />
-	<title>Its Burger Time!</title>
-</head>
+<div class="container">
+ 
+ <div class="col-md-5" id=notEaten>
+            <h3>Ready to Eat</h3>
+            <ul>
+                {{#each burgers}}
+                    {{#unless this.devoured}}
+                        <li>
+                            <h4>{{this.id}}. {{this.burger_name}}
+                                <form action="/{{this.id}}?_method=PUT" method="POST">
+                                    <input type="hidden" name="devoured" value="true">
+                                    <button type="submit" class="btn btn-primary btn-lg">Devour it!</button>
+                                </form>
+                            </h4>
+                        </li>
+                {{/unless}}
+                {{/each}}
+            </ul>
+        </div>
+    </div>
 
-<body>
-	{{{ body }}}
-</body>
+        
+        <div class="col-md-5" id=eaten>
+            <h3>Devoured!</h3>
 
-<!-- Jquery -->
-<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
-<!-- Bootstrap JS -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- Moment.js Reference -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+        <ul>
+                {{#each burgers}}
+                    {{#if this.devoured}}
+                        <li>
+                            <h4>{{this.id}} {{this.burger_name}}</h4>
+                        </li>
+                {{/if}}
+                {{/each}}
+            </ul>
 
-</html>
-Contact GitHub API Training Shop Blog About
-© 2017 GitHub, Inc. Terms Privacy Security Status Help
+    </div>
+</div>
+
+
+<div class="jumbotron">
+
+        <iframe src="//https://media.giphy.com/media/dnrlK0zmXsIHm/giphy.gif" width="480" height="417" frameBorder="0" class="giphy-embed" allowFullScreen align="center"></iframe>
+
+         <h1 style="color: red; text-align: center">Eat-Da-Burger!</h1>
+
+
+    <form class="create-update-form" action="update/:id" method="POST">
+
+    <div class="form-group">
+        
+        <textarea type="text" name="name" row="8" cols="40"></textarea>
+    
+    
+    <button type="submit">Add to menu!</button>
+
+<br>
+<h5>Enter a burger you want to eat. Click the "Add to menu!" button</h5 align="center">
+    </div>
+</form>
